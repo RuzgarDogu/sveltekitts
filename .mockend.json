@@ -18,7 +18,7 @@
         }
       },
       "category": {
-        "hasMany": "Category"
+        "object": [{"id":1, "Category":"Test 1"},{"id":2, "Category":"Test 2"}]
       },
       "isDraft": {
         "boolean": {}
@@ -34,29 +34,6 @@
           "min": "2010-01-01T00:00:00Z",
           "max": "2020-12-31T23:59:59Z"
         }
-      },
-      "comments": {
-        "hasMany": "Comment"
-      }
-    },
-    "Category": {
-      "_": {
-        "data": [
-          { "title": "First Cat" },
-          { "title": "Second Cat" },
-          { "title": "Third Cat" },
-          { "title": "Fourth Cat" },
-          { "title": "Fifth Cat" }
-        ]
-      },
-      "createdAt": {
-        "dateTime": {
-          "min": "2010-01-01T00:00:00Z",
-          "max": "2020-12-31T23:59:59Z"
-        }
-      },
-      "product": {
-        "belongsTo": "Product"
       }
     }
   }
