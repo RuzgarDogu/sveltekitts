@@ -4,7 +4,7 @@
         "items": 10
       },
       "cover": {
-        "regexp": "https://picsum\\.photos/seed/[0-9]{5}/600/400"
+        "regexp": "https://picsum\\.photos/seed/[0-9]{5}/600/500"
       },
       "title": {
         "loremWords": {
