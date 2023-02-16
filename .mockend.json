@@ -18,7 +18,7 @@
         }
       },
       "category": {
-        "object": [{"id":1, "Category":"Test 1"},{"id":2, "Category":"Test 2"}]
+        "int": { "min": 0, "max": 10 }
       },
       "isDraft": {
         "boolean": {}
@@ -35,6 +35,14 @@
           "max": "2020-12-31T23:59:59Z"
         }
       }
+    }
+    "Category": {
+        "_": {
+            "items": 10
+        },
+        "name": {
+            "loremWord": {}
+        }
     }
   }
   
