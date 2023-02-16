@@ -8,6 +8,7 @@ export default defineConfig({
 		alias: {
 			"@": fileURLToPath(new URL("./src", import.meta.url)),
 			"@components": fileURLToPath(new URL("./src/ui/components", import.meta.url)),
+			"@modules": fileURLToPath(new URL("./src/ui/modules", import.meta.url)),
 			"@config": fileURLToPath(new URL("./src/app.config.ts", import.meta.url)),
 			"@interfaces": fileURLToPath(new URL("./src/interfaces", import.meta.url)),
 			"@models": fileURLToPath(new URL("./src/models", import.meta.url)),

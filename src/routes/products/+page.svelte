@@ -5,28 +5,61 @@
     export let data: PageData;
     $: ({ products, categories, extra } = data)
 
-    let categoryFilter:any
+    $:console.log("products",products)
 
-    const filterByCategory = (dt:IsProductObject[],f:string) : IsProductObject[] => {
-        return categoryFilter == '%' ? dt : dt.filter(d => d.category == f)
+    let categoryFilter:[] = []
+
+    const filterByCategory = (dt:IsProductObject[],f:(string|undefined)[]) : IsProductObject[] => {
+        return dt.filter(d => f.includes(d.category))
     }
 
 </script>
-<input type="radio" bind:group={categoryFilter} value='%'>
-{#each categories as category}
-<input type="radio" bind:group={categoryFilter} value={category}>
-{/each}
-{categoryFilter}
+
+<nav>
+    <ul>
+      <li>
+        <details role="list">
+            <summary aria-haspopup="listbox">Select Categories</summary>
+            <ul role="listbox">
+            {#each categories as category}
+              <li>
+                <label>
+                    <input type=checkbox bind:group={categoryFilter} name={category} value={category}>
+                    {category}
+                </label>
+              </li>
+              {/each}
+            </ul>
+          </details>
+      </li>
+      <li>
+        <details role="list">
+          <summary aria-haspopup="listbox" role="button">Dropdown</summary>
+          <ul role="listbox">
+            <li>Test 1</li>
+            <li>Test 2</li>
+            <li>Test 3</li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </nav>
+
 {#each filterByCategory(products,categoryFilter) as product}
-    <p>{extra}</p>
-    <p><a href="/products/{product.id}">{product.title}</a></p>
+  <article>
+    <header><img src="{product.images?.[0] || 'Placeholder will come here...'}" alt=""></header>
+    {product.title}
+    <footer><a href="/products/{product.id}">See Details</a></footer>
+  </article>
 {/each}
 
 <form action="?/createProduct" method="POST">
     <h3>New Product</h3>
-    <label for="title"> Title </label>
-    <input type="text" id="title" name="title" />
-    <label for="description"> Title </label>
-    <textarea id="description" name="description" rows={5} />
-    <button type="submit">Add Article</button>
+    <label for="title"> Title
+      <input type="text" id="title" name="title" />
+    </label>
+    <label for="description"> Title
+      <textarea id="description" name="description" rows={5} />
+    </label>
+    <input type="submit" value="Add Article"/>
 </form>
