@@ -1,10 +1,13 @@
 {
-    "Post": {
+    "Product": {
       "_": {
-        "items": 10
+        "items": 100
       },
-      "cover": {
-        "regexp": "https://picsum\\.photos/seed/[0-9]{5}/600/500"
+      "images": {
+        "_": {
+          "items": 5
+        },
+        "regexp": "https://picsum\\.photos/seed/[0-9]{8}/600/400"
       },
       "title": {
         "loremWords": {
@@ -12,21 +15,21 @@
           "maxLength": 20
         }
       },
-      "body": {
+      "description": {
         "loremParagraphs": {
           "minLength": 10,
           "maxLength": 100
         }
       },
       "category": {
-        "string": ["one", "two", "three"]
+        "hasMany": "Category"
       },
       "isDraft": {
         "boolean": {}
       },
-      "views": {
+      "price": {
         "int": {
-          "min": 0,
+          "min": 10,
           "max": 1000
         }
       },
@@ -40,18 +43,15 @@
         "hasMany": "Comment"
       }
     },
-    "Comment": {
+    "Category": {
       "_": {
-        "items": 25
-      },
-      "email": {
-        "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
-      },
-      "body": {
-        "loremParagraphs": {
-          "minLength": 10,
-          "maxLength": 100
-        }
+        "data": [
+          { "title": "First Cat" },
+          { "title": "Second Cat" },
+          { "title": "Third Cat" },
+          { "title": "Fourth Cat" },
+          { "title": "Fifth Cat" }
+        ]
       },
       "createdAt": {
         "dateTime": {
@@ -59,8 +59,8 @@
           "max": "2020-12-31T23:59:59Z"
         }
       },
-      "post": {
-        "belongsTo": "Post"
+      "product": {
+        "belongsTo": "Product"
       }
     }
   }
