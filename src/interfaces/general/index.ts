@@ -7,6 +7,7 @@ export interface ResponseObject {
 }
 
 export interface IsStore {
+	getCategories(): Promise<[]>
     url:string
     get(): Promise<IsProductObject[]>
     createProduct(obj:object): Promise<Product>
@@ -15,8 +16,8 @@ export interface IsStore {
 
 export interface IsProduct {
     id: number
-    title: string
-    description: string
+    title?: string
+    description?: string
     price?: number
     discountPercentage?: number
     rating?: number
@@ -26,12 +27,13 @@ export interface IsProduct {
     thumbnail?: string
     images?: string[]
     get():Promise<IsProductObject>
+    call():Promise<IsProductObject>
 }
 
 export interface IsProductObject {
     id: number
-    title: string
-    description: string
+    title?: string
+    description?: string
     price?: number
     discountPercentage?: number
     rating?: number

@@ -1,10 +1,11 @@
+import DB from "$lib/core/endpoints"
 import type { IsProduct, IsProductObject } from "src/interfaces/general"
 
 // import { DB } from '@utils'
 class Product implements IsProduct {
     id: number
-    title: string
-    description: string
+    title?: string
+    description?: string
     price?: number
     discountPercentage?: number
     rating?: number
@@ -28,6 +29,9 @@ class Product implements IsProduct {
         this.images= obj.images
     }
     get = async () => {
+      return await DB.get('/products/'+this.id)
+    }
+    call = async () => {
       return {
         id: this.id,
         title: this.title,

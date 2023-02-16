@@ -22,10 +22,13 @@ class StoreClass implements IsStore {
         // EĞER Obje olarak gönderecek ise aşağıdaki metodu uygulayabiliriz.
         let products:IsProductObject[] = []
         for (const product of this.products) {
-            const p = await product.get()
+            const p = await product.call()
             products = [{...p}, ...products]
         }
         return products
+    }
+    getCategories = async ():Promise<[]> => {
+        return DB.get('products/categories')
     }
     createProduct = async (obj:object) => {
         const response = await DB.post('/products/add',obj)
