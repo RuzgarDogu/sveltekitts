@@ -3,11 +3,8 @@
       "_": {
         "items": 100
       },
-      "images": [
+      "image":
         { "regexp": "https://picsum\\.photos/seed/[0-9]{8}/600/400"},
-        { "regexp": "https://picsum\\.photos/seed/[0-9]{8}/600/400"},
-        { "regexp": "https://picsum\\.photos/seed/[0-9]{8}/600/400"}
-      ],
       "title": {
         "loremWords": {
           "minLength": 5,
