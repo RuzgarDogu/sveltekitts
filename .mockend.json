@@ -17,8 +17,17 @@
           "maxLength": 100
         }
       },
+      "body": {
+        "loremParagraphs": {
+          "minLength": 10,
+          "maxLength": 100
+        }
+      },
       "category": {
         "int": { "min": 0, "max": 10 }
+      },
+      "rating": {
+        "int": { "min": 0, "max": 5 }
       },
       "isActive": {
         "boolean": {}
@@ -43,6 +52,19 @@
         "name": {
             "loremWord": {}
         }
+    },
+    "User": {
+        "_": {
+            "items": 10
+        },
+        "firstName": { "regexp": "[A-Z][a-z]{5,10}" },
+        "lastName": { "regexp": "[A-Z][a-z]{5,10}" },
+        "avatar": {
+          "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
+        },
+        "email": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+        "username": { "loremWord": {} },
+        "wishlist": { "int": { "min": 0, "max": 10 } }
     }
   }
   

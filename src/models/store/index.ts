@@ -13,8 +13,8 @@ class StoreClass implements IsStore {
         this.products = []
     }
     load = async () => {
-        const products = await DB.get('/products?limit='+11)
-        for (const product of products.products) {
+        const products = await DB.get('/products?_limit='+11)
+        for (const product of products) {
             this.products = [...this.products, new Product(product)]
         }
     }
@@ -28,7 +28,7 @@ class StoreClass implements IsStore {
         return products
     }
     getCategories = async ():Promise<[]> => {
-        return DB.get('products/categories')
+        return DB.get('/category')
     }
     createProduct = async (obj:object) => {
         const response = await DB.post('/products/add',obj)
