@@ -1,5 +1,3 @@
-import type { Product } from "@models"
-
 export interface ResponseObject {
     code: number
     message: string
@@ -7,27 +5,20 @@ export interface ResponseObject {
 }
 
 export interface IsStore {
+    url:URL
 	getCategories(): Promise<[]>
-    url:string
     get(): Promise<IsProductObject[]>
-    createProduct(obj:object): Promise<Product>
+    createProduct(obj:object): Promise<IsProduct>
     load(): Promise<void>
 }
 
-export interface IsProduct {
-    id: number
-    title?: string
-    description?: string
-    price?: number
-    discountPercentage?: number
-    rating?: number
-    stock?: number
-    brand?: string
-    category?: string
-    thumbnail?: string
-    images?: string[]
+export interface IsProduct extends IsProductObject {
     get():Promise<IsProductObject>
     call():Promise<IsProductObject>
+    init():Promise<void>
+    display():void
+    edit():void
+    addWishlist():void
 }
 
 export interface IsProductObject {
@@ -35,11 +26,9 @@ export interface IsProductObject {
     title?: string
     description?: string
     price?: number
-    discountPercentage?: number
     rating?: number
-    stock?: number
-    brand?: string
-    category?: string
-    thumbnail?: string
-    images?: string[]
+    isActive?: number
+    category?: number
+    image?: URL
+    createdAt?: string
 }
