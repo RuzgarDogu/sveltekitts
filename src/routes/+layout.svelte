@@ -2,12 +2,25 @@
 	import '@/app.postcss';
 	// import '@picocss/pico'
 	import '@styles/app.scss'
-	import { Navbar } from '@modules';
+	import { Navbar, Sidebar } from '@modules';
+	let collapsed = false
 </script>
 
-<div class="app">
-	<Navbar />
-	<main class="container">
+
+
+
+<div class="app grid-container" class:collapsed={collapsed}>
+   <header class="header">
+	<Navbar on:testing={() => collapsed = !collapsed}/>
+   </header>
+   <Sidebar bind:collapsed/>
+   <main class="main">
 		<slot />
 	</main>
-</div>
+   <footer class="footer">
+		Footer
+	</footer>
+ </div>
+
+
+ 

@@ -55,8 +55,14 @@ class Product implements IsProduct {
     display = () => {
       window.location = '/products/'+this.id
     }
-    edit = () => {
-      window.location = '/products/edit/'+this.id
+    edit = (type='server') => {
+      window.location = '/products/'+(type == "server" ? "edit" : "editclient")+'/'+this.id
+    }
+    update = async () => {
+      const body = this.call()
+      delete body.id
+      let asd = await DB.put('/productsaaa/'+this.id,body)
+      console.log("----ASD-----",asd)
     }
     addWishlist = (e) => {
       e.currentTarget.classList.toggle('wishlistAdded')

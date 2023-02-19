@@ -18,6 +18,7 @@ export interface IsProduct extends IsProductObject {
     init():Promise<void>
     display():void
     edit():void
+    update():Promise<IsProduct>
     addWishlist():void
 }
 

@@ -28,6 +28,14 @@ class Database {
           throw new Error("Oooops....")
         }
       }
+      put = async (path: string, body:object) => {
+        try {
+          const response = await this.db.put(path,body);
+          return response.data
+        } catch (error) {
+          throw new Error("Oooops....")
+        }
+      }
 
   }
 
