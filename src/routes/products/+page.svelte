@@ -44,12 +44,15 @@
     </header>
   </section>
 
-{#each filterByCategory(products,categoryFilter) as product}
-  <section class="bg-slate-100 p-4">
-    <ProductCard {product}/>
-  </section>
-{/each}
+  <div class="grid grid-cols-2 gap-4">
 
+    {#each filterByCategory(products,categoryFilter) as product}
+    <section class="bg-slate-100 p-4">
+      <ProductCard {product}/>
+    </section>
+    {/each}
+  </div>
+    
 <Modal title="Filter Categories" bind:open={filterModal} autoclose>
     <div class="grid grid-cols-2">
     {#each categories as category}

@@ -12,14 +12,14 @@ class StoreClass implements IsStore {
         this.url = url
         this.products = []
     }
-    load = async () => {
-        const products = await DB.get('/products?_limit='+11)
+    load = async (count=11) => {
+        const products = await DB.get('/products?_limit='+count)
         for (const product of products) {
             this.products = [...this.products, new Product(product)]
         }
     }
-    get = async () => {
-        // EĞER Obje olarak gönderecek ise aşağıdaki metodu uygulayabiliriz.
+    get = async (count = 1) => {
+        await this.load(count)
         let products:IsProductObject[] = []
         for (const product of this.products) {
             const p = await product.call()
@@ -39,4 +39,4 @@ class StoreClass implements IsStore {
 }
 
 export const Store:IsStore = new StoreClass(APIURL)
-Store.load()
+// Store.load()
