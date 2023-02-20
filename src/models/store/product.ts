@@ -58,17 +58,15 @@ class Product implements IsProduct {
     edit = (type='server') => {
       window.location = '/products/'+(type == "server" ? "edit" : "editclient")+'/'+this.id
     }
-    update = async () => {
-      const body = this.call()
-      delete body.id
-      let asd = await DB.put('/productsaaa/'+this.id,body)
-      console.log("----ASD-----",asd)
+    update(): Promise<IsProduct> {
+        const body = this.call()
+        return DB.put('/products/'+this.id,body)
     }
-    addWishlist = (e) => {
-      e.currentTarget.classList.toggle('wishlistAdded')
-      let wishlist:number[] = localStorage.getItem('wishlist')?.split(',').map(w => Number(w)) || []
-      wishlist = [...wishlist,this.id]
-      localStorage.setItem('wishlist',wishlist.join(','))
+    addWishlist(): void {
+        e.currentTarget.classList.toggle('wishlistAdded')
+        let wishlist:number[] = localStorage.getItem('wishlist')?.split(',').map(w => Number(w)) || []
+        wishlist = [...wishlist,this.id]
+        localStorage.setItem('wishlist',wishlist.join(','))
     }
 }
 

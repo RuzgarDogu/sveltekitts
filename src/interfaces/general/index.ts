@@ -8,7 +8,7 @@ export interface IsStore {
     url:URL
 	getCategories(): Promise<[]>
     get(): Promise<IsProductObject[]>
-    createProduct(obj:object): Promise<IsProduct>
+    createProduct(obj:IsProductObject): Promise<IsProduct>
     load(): Promise<void>
 }
 

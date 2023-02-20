@@ -81,7 +81,7 @@
 
 -->
 
-<Navbar>
+<Navbar class="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 border-gray-100 dark:border-gray-700 px-2 w-full">
 	<button on:click={testing} type="button" aria-label="Open main menu">
 		<span class="sr-only">Open main menu</span>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="h-6 w-6 shrink-0" aria-label="bars 3" fill="none" viewBox="0 0 24 24" stroke-width="2">

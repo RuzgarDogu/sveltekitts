@@ -14,7 +14,7 @@
 	<Navbar on:testing={() => collapsed = !collapsed}/>
    </header>
    <Sidebar bind:collapsed/>
-   <main class="main">
+   <main class="main bg-slate-100">
 		<slot />
 	</main>
    <footer class="footer">
