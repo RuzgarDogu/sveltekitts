@@ -1,11 +1,17 @@
 <script>
 	import '@/app.postcss';
-	// import '@picocss/pico'
 	import '@styles/app.scss'
 	import { Navbar, Sidebar } from '@modules';
 	let collapsed = false
+	
+	let innerWidth = 0
+    let innerHeight = 0
+
+	$: smallDevice = (innerWidth < 768)
+	$: collapsed = smallDevice
 </script>
 
+<svelte:window bind:innerWidth bind:innerHeight />
 
 
 
@@ -13,7 +19,7 @@
    <header class="header">
 	<Navbar on:testing={() => collapsed = !collapsed}/>
    </header>
-   <Sidebar bind:collapsed/>
+   <Sidebar {smallDevice} bind:collapsed/>
    <main class="main bg-slate-100">
 		<slot />
 	</main>

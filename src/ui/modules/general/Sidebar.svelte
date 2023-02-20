@@ -1,32 +1,44 @@
-<script>
-    import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
-    let spanClass = 'flex-1 ml-3 whitespace-nowrap';
-    export let collapsed
-    $: collapsed, asdf()
-    let sidebar
-    const asdf = () => {
-        console.log("collapsed",sidebar)
-        if(!!sidebar) {
-            sidebar.classList.toggle('hidden')
-            sidebar.classList.toggle('w-64')
-            sidebar.classList.toggle('w-16')
-            let titles = sidebar.querySelectorAll("li > a > *:not(svg)")
-            console.log("titles",titles)
-            titles.forEach(el => {
-                console.log("el",el)
-                el.classList.toggle('hidden')
-            });
-            // sidebar.classList.toggle('md:block')
-        }
-    }
+<script lang="ts">
+    export let collapsed:Boolean
+    export let smallDevice:Boolean
+    
+    let sidebar:HTMLElement
+    let links:HTMLElement[]
+    
+    $: collapsed, toggleCollapse()
 
+    const toggleCollapse = () => {
+        if(!sidebar) return
+        let titles = sidebar.querySelectorAll("li > a > *:not(svg)")
+        if(collapsed) {
+          sidebar.classList.add('hidden')
+          sidebar.classList.add('md:w-16')
+          sidebar.classList.remove('md:w-64')
+          titles.forEach(el => {
+              el.classList.add('hidden')
+          });
+        } else {
+          sidebar.classList.remove('hidden')
+          sidebar.classList.remove('md:w-16')
+          sidebar.classList.add('md:w-64')
+          titles.forEach(el => {
+              el.classList.remove('hidden')
+          });
+        }
+        if(smallDevice) {
+          links = sidebar.querySelectorAll("li > a")
+          links.forEach(link => {
+              link.addEventListener('click', () => {
+                  collapsed = true
+              })
+          })
+        }
+  }
 
   </script>
-      <aside class="w-64 hidden md:block sidenav shadow-sm" aria-label="Sidebar" bind:this={sidebar}>
-
-
+      <aside class="w-full md:w-64 hidden md:block sidenav shadow-sm bg-white" aria-label="Sidebar" bind:this={sidebar}>
         <ul class="p-4">
-          <li>
+          <li class="flex justify-between">
             <a class="flex" href="">
               <svg class="w-6 h-6 mr-2" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="#000000">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -49,8 +61,12 @@
                   <path d="M99.552 185.968l.005-58.117-28.469 29.978 28.464 28.139" fill="#FF9B07"></path>
                 </g>
               </svg>
-              <span>Sveltekit Dashboard</span>
+              <span class="truncate">Sveltekit Dashboard</span>
             </a>
+            <button class="flex md:hidden" on:click={() => collapsed = true} type="button" aria-label="Open main menu">
+              <span class="sr-only">Open main menu</span>
+              <span class="text-lg">x</span>
+            </button>
           </li>
         </ul>
 
