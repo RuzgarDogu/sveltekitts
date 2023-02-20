@@ -1,12 +1,11 @@
-import type { PageServerLoad } from './$types';
+import type { LayoutLoad } from './$types';
 import { Store } from '@models'
 
 export const load = (async () => {
-	const products = await Store.get(12)
-    console.log("----------------",products)
+    const products = await Store.get()
 	const categories = await Store.getCategories()
     return {
         products: products,
         categories: categories
-    };
-}) satisfies PageServerLoad;
+    }
+}) satisfies LayoutLoad;

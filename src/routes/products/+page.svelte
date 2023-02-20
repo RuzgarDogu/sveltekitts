@@ -1,26 +1,17 @@
 <script lang="ts">
-	import type { IsProductObject } from 'src/interfaces/general';
+	import type { IsProduct } from '@interfaces';
 	import { ProductCard } from '@modules'
   import type { PageData } from './$types';
   import { Modal } from 'flowbite-svelte'
 
   export let data: PageData;
     $: ({ products, categories } = data)
-    $: console.log(categoryFilter)
     let categoryFilter:number[] = [1]
     let filterModal = false
-    const filterByCategory = (dt:IsProductObject[],f:object[]) : IsProductObject[] => {
-
-      if(f.length === 0) return dt
-      console.log(f)
+    const filterByCategory = (dt:IsProduct[],f:(number|undefined)[]) : IsProduct[] => {
         return dt.filter(d => f.includes(d.category))
     }
 </script>
-
-<h1>DİKATTTTTTT</h1>
-<h1>SANIRIM SESSİON'DA BİLGİLER TUTUYOR, YA DA SERVİCE WORKER BAKMAK LAZIM</h1>
-<h1>ÇÜNKÜ PRODUCTS ARRAY'İ HER REFRESH'TE BÜYÜYOR</h1>
-<h1>YANİ HER REFRESH'TE AYNI ARRAY'I TEKRAR TEKRAR ÇEKİYOR</h1>
   <section>
     <header class="bg-white space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
       <div class="flex items-center justify-between">
@@ -53,12 +44,12 @@
     </header>
   </section>
 
-  <div class="grid grid grid-cols-1 lg:grid-cols-2 gap-4">
+  <div class="grid grid grid-cols-1 lg:grid-cols-2">
 
     {#each filterByCategory(products,categoryFilter) as product}
-    <section class="bg-slate-100 p-4">
+    <div class="p-4">
       <ProductCard {product}/>
-    </section>
+    </div>
     {/each}
   </div>
     

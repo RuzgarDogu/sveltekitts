@@ -22,7 +22,7 @@
 
 
   </script>
-      <aside class="w-64 hidden md:block sidenav" aria-label="Sidebar" bind:this={sidebar}>
+      <aside class="w-64 hidden md:block sidenav shadow-sm" aria-label="Sidebar" bind:this={sidebar}>
 
 
         <ul class="p-4">
@@ -54,7 +54,7 @@
           </li>
         </ul>
 
-        <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+        <div class="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
           <ul class="space-y-2">
             <li>
               <a class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" href="">
