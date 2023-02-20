@@ -21,7 +21,7 @@ export interface IsProductObject {
     rating?: number
     isActive?: number
     category?: number
-    image?: URL
+    image?: string
     createdAt?: string
 }
 

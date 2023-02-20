@@ -7,12 +7,12 @@
 </script>
 
 <div class="flex flex-wrap p-2">
-    <div class="w-3/5 p-2">
+    <div class="w-full lg:w-3/5 p-2">
         <div class="bg-white rounded-lg">
             <slot />
         </div> 
     </div>
-    <div class="w-2/5 p-2">
+    <div class="w-full lg:w-2/5 p-2">
 
         <div class="divide-y divide-slate-100">
             <ul class="divide-y divide-slate-100 bg-white p-4  rounded-lg">

@@ -8,7 +8,7 @@ class Product implements IsProduct {
     rating?: number
     isActive?: number
     category?: number
-    image?: URL
+    image?: string
     createdAt?: string
 
     constructor(obj:IsProductObject) {
@@ -45,7 +45,7 @@ class Product implements IsProduct {
         alert('Product could not be updated')
       }
     }
-    addWishlist(): void {
+    addWishlist(e:HtmlElement): void {
         e.currentTarget.classList.toggle('wishlistAdded')
         let wishlist:number[] = localStorage.getItem('wishlist')?.split(',').map(w => Number(w)) || []
         wishlist = [...wishlist,this.id]

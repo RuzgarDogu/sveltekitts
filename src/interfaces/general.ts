@@ -18,5 +18,5 @@ export interface HtmlElement {
     onblur: () => void
     onfocus: () => void
     target: HTMLFormElement
-    currentTarget: string
+    currentTarget: object
 }
