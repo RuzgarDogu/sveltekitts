@@ -3,11 +3,14 @@
 }
 
 /************************* DASHBOARD */
-
+aside li a > svg {
+  // fill: #ffc77f52;
+  stroke: rgb(94 161 185);
+}
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 56px 1fr 50px;
+    grid-template-rows: auto 1fr 50px;
     grid-template-areas:
       'header'
       'main'
@@ -29,7 +32,7 @@
     overflow-y: auto;
     // transform: translateX(-245px);
     transition: all .6s ease-in-out;
-    z-index: 2;
+    z-index: 999;
   }
   
   .main {
