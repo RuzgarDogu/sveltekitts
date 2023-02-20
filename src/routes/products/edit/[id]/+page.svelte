@@ -12,39 +12,40 @@
 
 </script>
 
+<div class="p-4">
 
-<form method="POST" on:submit|preventDefault={update}>
-<div class="pt-10 lg:col-span-5 xl:col-span-6 lg:row-start-1 lg:row-end-2">
-    <div class="relative z-10 bg-white rounded-xl shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:highlight-white/10">
-      <article>
-        <h2 class="text-lg font-semibold text-slate-900 pt-4 pb-2 px-4 sm:px-6 lg:px-4 xl:px-6 dark:text-slate-100 transition-opacity duration-[1.5s] delay-500 opacity-75 capitalize">{product.title}</h2>
-        <dl class="flex flex-wrap divide-y divide-slate-200 border-b border-slate-200 text-sm sm:text-base lg:text-sm xl:text-base dark:divide-slate-200/5 dark:border-slate-200/5">
-          <div class="px-4 sm:px-6 lg:px-4 xl:px-6 pb-4">
-            <dt class="sr-only">Date and time</dt>
-            <dd class="transition-opacity duration-[1.5s] delay-500 opacity-25">
-              <time datetime="2020-11-15T10:00:00-05:00">{product.createdAt}</time> -
-              <time datetime="2020-11-15T11:00:00-05:00">11:00am <span class="sr-only sm:not-sr-only"> EST</span>
-              </time>
-            </dd>
-          </div>
+  <form method="POST" on:submit|preventDefault={update}>
+    <div class="lg:col-span-5 xl:col-span-6 lg:row-start-1 lg:row-end-2">
+      <div class="relative z-10 bg-white rounded-xl shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:highlight-white/10">
+        <article>
+          <h2 class="text-lg font-semibold text-slate-900 pt-4 pb-2 px-4 sm:px-6 lg:px-4 xl:px-6 dark:text-slate-100 transition-opacity duration-[1.5s] delay-500 opacity-75 capitalize">{product.title}</h2>
+          <dl class="flex flex-wrap divide-y divide-slate-200 border-b border-slate-200 text-sm sm:text-base lg:text-sm xl:text-base dark:divide-slate-200/5 dark:border-slate-200/5">
+            <div class="px-4 sm:px-6 lg:px-4 xl:px-6 pb-4">
+              <dt class="sr-only">Date and time</dt>
+              <dd class="transition-opacity duration-[1.5s] delay-500 opacity-25">
+                <time datetime="2020-11-15T10:00:00-05:00">{product.createdAt}</time> -
+                <time datetime="2020-11-15T11:00:00-05:00">11:00am <span class="sr-only sm:not-sr-only"> EST</span>
+                </time>
+              </dd>
+            </div>
             <ListItem title="Title">
               <Input value={product.title} name="title" size="sm" id='default-input' placeholder="Title" />
             </ListItem>
-          <ListItem title="Category">
-            <Select name="category" class="mt-2" items={categories} value={product.category} />
-          </ListItem>
-          <ListItem title="Price">
-            <Input value={product.price} type="number" name="price" size="sm" id='default-input' placeholder="Price" />
-          </ListItem>
-          <ListItem title="Desciption">
-            <Textarea {...{
-              id: 'description',
-              name: 'description',
-              label: 'description',
-              value: product.description,
-              rows: 4,
-              placeholder: 'Write a description...',
-            }} />
+            <ListItem title="Category">
+              <Select name="category" class="mt-2" items={categories} value={product.category} />
+            </ListItem>
+            <ListItem title="Price">
+              <Input value={product.price} type="number" name="price" size="sm" id='default-input' placeholder="Price" />
+            </ListItem>
+            <ListItem title="Desciption">
+              <Textarea {...{
+                id: 'description',
+                name: 'description',
+                label: 'description',
+                value: product.description,
+                rows: 4,
+                placeholder: 'Write a description...',
+              }} />
           </ListItem>
           
         </dl>
@@ -55,5 +56,6 @@
       </article>
     </div>
   </div>
-
+  
 </form>
+</div>

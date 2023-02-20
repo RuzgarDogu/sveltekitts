@@ -13,7 +13,7 @@
     }
 </script>
   <section>
-    <header class="bg-white space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
+    <header class="space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
       <div class="flex items-center justify-between">
         <h2 class="font-semibold text-slate-900">Products</h2>
         <div class="flex space-x-1">
