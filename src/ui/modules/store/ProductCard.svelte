@@ -1,10 +1,7 @@
 <script lang="ts">
-	import { Product } from "@models";
-	import type { IsProductObject } from "src/interfaces/general";
+	import type { IsProduct } from "@interfaces";
 	import { Card } from "@components";
-  let p:IsProductObject
-  export {p as product}
-  const product = new Product(p)
+  export let product: IsProduct
 </script>
 
 

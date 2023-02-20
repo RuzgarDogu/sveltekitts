@@ -1,24 +1,15 @@
-export interface ResponseObject {
-    code: number
-    message: string
-    data: [] | object
-}
-
 export interface IsStore {
-    url:URL
-	getCategories(): Promise<[]>
-    get(): Promise<IsProductObject[]>
-    createProduct(obj:IsProductObject): Promise<IsProduct>
+    url:string
+	getCategories(): Promise<IsCategory[]>
+    get(): Promise<IsProduct[]>
+    createProduct(obj:IsProduct): Promise<IsProduct>
     load(): Promise<void>
 }
 
 export interface IsProduct extends IsProductObject {
-    get():Promise<IsProductObject>
-    call():Promise<IsProductObject>
-    init():Promise<void>
     display():void
     edit():void
-    update():Promise<IsProduct>
+    update(data:HTMLFormElement):Promise<void>
     addWishlist():void
 }
 
@@ -32,4 +23,9 @@ export interface IsProductObject {
     category?: number
     image?: URL
     createdAt?: string
+}
+
+export interface IsCategory {
+    id: number
+    name: string
 }

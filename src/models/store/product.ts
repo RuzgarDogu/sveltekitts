@@ -1,7 +1,5 @@
 import DB from "$lib/core/endpoints"
-import type { IsProduct, IsProductObject } from "src/interfaces/general"
-
-// import { DB } from '@utils'
+import type { HtmlElement, IsProduct, IsProductObject } from "@interfaces"
 class Product implements IsProduct {
     id: number
     title?: string
@@ -24,43 +22,28 @@ class Product implements IsProduct {
         this.image= obj.image
         this.createdAt= obj.createdAt
     }
-    get = async () => {
-      return await DB.get('/products/'+this.id)
-    }
-    init = async () => {
-      const p = await this.get()
-      this.id = p.id
-      this.title = p.title
-      this.description = p.description
-      this.price = p.price
-      this.rating= p.rating
-      this.isActive= p.isActive
-      this.category= p.category
-      this.image= p.image
-      this.createdAt= p.createdAt
-    }
-    call = async () => {
-      return {
-        id: this.id,
-        title: this.title ,
-        description: this.description ,
-        price: this.price ,
-        rating: this.rating,
-        isActive: this.isActive,
-        category: this.category,
-        image: this.image,
-        createdAt: this.createdAt
-      }
-    }
     display = () => {
       window.location = '/products/'+this.id
     }
-    edit = (type='server') => {
-      window.location = '/products/'+(type == "server" ? "edit" : "editclient")+'/'+this.id
+    edit = () => {
+      window.location = '/products/edit/'+this.id
     }
-    update(): Promise<IsProduct> {
-        const body = this.call()
-        return DB.put('/products/'+this.id,body)
+    update = async (form:HtmlFormElement): Promise<void> => {
+      if(!form) return
+      const formData = new FormData(form)
+      const data = Object.fromEntries(formData.entries())
+      const response = await DB.put('/products/'+this.id,data)
+      console.log("response", response)
+      if(!response.error) {
+        for(const key in data) {
+          if(key in this) {
+            this[key] = data[key]
+          }
+        }
+        alert('Product updated successfully')
+      } else {
+        alert('Product could not be updated')
+      }
     }
     addWishlist(): void {
         e.currentTarget.classList.toggle('wishlistAdded')

@@ -1,4 +1,4 @@
-import type { LayoutServerLoad } from './$types';
+import type { LayoutLoad } from './$types';
 import { Store } from '@models'
 
 export const load = (async () => {
@@ -8,4 +8,4 @@ export const load = (async () => {
         products: products,
         categories: categories
     }
-}) satisfies LayoutServerLoad;
+}) satisfies LayoutLoad;

@@ -1,15 +1,14 @@
 <script lang="ts">
-	import type { IsProductObject } from 'src/interfaces/general';
+	import type { IsProduct } from '@interfaces';
 	import { ProductCard } from '@modules'
   import type { PageData } from './$types';
   import { Modal } from 'flowbite-svelte'
 
   export let data: PageData;
     $: ({ products, categories } = data)
-    $: console.log(products)
     let categoryFilter:number[] = [1]
     let filterModal = false
-    const filterByCategory = (dt:IsProductObject[],f:object[]) : IsProductObject[] => {
+    const filterByCategory = (dt:IsProduct[],f:(number|undefined)[]) : IsProduct[] => {
         return dt.filter(d => f.includes(d.category))
     }
 </script>

@@ -1,2 +1,3 @@
-export type { IsStore } from './general'
-export type { Response } from './general'
+export type { HtmlElement } from './general'
+export type { IsStore, IsProduct, IsProductObject, IsCategory } from './store'
+
