@@ -6,20 +6,35 @@
 
   export let data: PageData;
     $: ({ products, categories } = data)
+    $: console.log(categoryFilter)
     let categoryFilter:number[] = [1]
     let filterModal = false
     const filterByCategory = (dt:IsProductObject[],f:object[]) : IsProductObject[] => {
+
+      if(f.length === 0) return dt
+      console.log(f)
         return dt.filter(d => f.includes(d.category))
     }
 </script>
 
-
-
+<h1>DİKATTTTTTT</h1>
+<h1>SANIRIM SESSİON'DA BİLGİLER TUTUYOR, YA DA SERVİCE WORKER BAKMAK LAZIM</h1>
+<h1>ÇÜNKÜ PRODUCTS ARRAY'İ HER REFRESH'TE BÜYÜYOR</h1>
+<h1>YANİ HER REFRESH'TE AYNI ARRAY'I TEKRAR TEKRAR ÇEKİYOR</h1>
   <section>
     <header class="bg-white space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
       <div class="flex items-center justify-between">
         <h2 class="font-semibold text-slate-900">Products</h2>
         <div class="flex space-x-1">
+          <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
+            <label for="topbar-search" class="sr-only">Search</label>
+            <div class="relative lg:w-96">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+              </div>
+              <input type="text" name="email" id="topbar-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
+            </div>
+          </form>
           <button on:click={() => filterModal = true} class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm">
             <svg fill="currentColor" height="15" width="15" class="mr-2" aria-hidden="true" viewBox="0 0 300.906 300.906" xml:space="preserve">
               <path d="M288.953,0h-277c-5.522,0-10,4.478-10,10v49.531c0,5.522,4.478,10,10,10h12.372l91.378,107.397v113.978 c0,3.688,2.03,7.076,5.281,8.816c1.479,0.792,3.101,1.184,4.718,1.184c1.94,0,3.875-0.564,5.548-1.68l49.5-33 c2.782-1.854,4.453-4.977,4.453-8.32v-80.978l91.378-107.397h12.372c5.522,0,10-4.478,10-10V10C298.953,4.478,294.476,0,288.953,0 z M167.587,166.77c-1.539,1.809-2.384,4.105-2.384,6.48v79.305l-29.5,19.666V173.25c0-2.375-0.845-4.672-2.384-6.48L50.585,69.531 h199.736L167.587,166.77z M278.953,49.531h-257V20h257V49.531z"></path>
@@ -35,16 +50,10 @@
         </div>
 
       </div>
-      <form class="group relative">
-        <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500" aria-hidden="true">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
-        </svg>
-        <input class="focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm" type="text" aria-label="Filter Products" placeholder="Filter Products...">
-      </form>
     </header>
   </section>
 
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid grid-cols-1 lg:grid-cols-2 gap-4">
 
     {#each filterByCategory(products,categoryFilter) as product}
     <section class="bg-slate-100 p-4">
