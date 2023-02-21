@@ -41,9 +41,9 @@
   </div>
   <div class="flex space-x-4 text-sm font-medium">
     <div class="flex-auto flex space-x-4">
-      <button on:click={() => product.display()} class="h-10 px-6 font-semibold rounded-md bg-indigo-100 text-indigo-800">
+      <a data-sveltekit-preload-data href="/products/{product.id}" class="h-10 flex items-center justify-center px-6 font-semibold rounded-md bg-indigo-100 text-indigo-800">
         Product Details
-      </button>
+      </a>
     </div>
     <button on:click={(e) => product.addWishlist(e)} class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
       <svg width="20" height="20" fill="currentColor" aria-hidden="true">

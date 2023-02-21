@@ -20,7 +20,7 @@
 
                 {#each relatedProducts as product}
                 <li>
-                    <a href="/products/{product.id}">
+                    <a data-sveltekit-preload-data href="/products/{product.id}">
                         <article class="flex items-start space-x-4 p-2">
                             <img src={product.image} class="flex-none rounded-md bg-slate-100 h-16 w-16" alt="productimage"/>
                         <div class="min-w-0 relative flex-auto">
