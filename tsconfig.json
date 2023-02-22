@@ -13,8 +13,8 @@
 			"@stores": ["src/lib/stores"],
 			"@images": ["src/lib/images"],
 			"@": ["src"],
-			"$lib":["./src/lib"],
-			"$lib/*":["./src/lib/*"]
+			"$lib": ["./src/lib"],
+			"$lib/*": ["./src/lib/*"]
 		},
 		"allowJs": true,
 		"checkJs": true,
