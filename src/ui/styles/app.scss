@@ -1,71 +1,70 @@
 .wishlistAdded svg {
-    fill: red;
+	fill: red;
 }
 
 /************************* DASHBOARD */
 aside li a > svg {
-  // fill: #ffc77f52;
-  stroke: rgb(94 161 185);
+	// fill: #ffc77f52;
+	stroke: rgb(94 161 185);
 }
 .grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr 50px;
-    grid-template-areas:
-      'header'
-      'main'
-      'footer';
-    height: 100vh;
-  }
-  
-  .header {
-    grid-area: header;
-  }
-  
-  .sidenav {
-    grid-area: sidenav;
-    // display: flex;
-    // flex-direction: column;
-    height: 100%;
-    // width: 240px;
-    position: fixed;
-    overflow-y: auto;
-    // transform: translateX(-245px);
-    transition: all .6s ease-in-out;
-    z-index: 999;
-  }
-  
-  .main {
-    grid-area: main;
-  }
-
-  .footer {
-    grid-area: footer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-  }
-  
-.collapsed {
-    // & > .sidenav {
-    //     width: auto;
-    // }
-    &.grid-container {
-        grid-template-columns: auto 1fr
-    }
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr 50px;
+	grid-template-areas:
+		'header'
+		'main'
+		'footer';
+	height: 100vh;
 }
 
-  @media only screen and (min-width: 768px) {
-    .grid-container {
-      grid-template-columns: auto 1fr;
-      grid-template-areas:
-        "sidenav header"
-        "sidenav main"
-        "sidenav footer";
-    }
-    .sidenav {
-      position: relative;
-      transform: translateX(0);
-    }
-  }
+.header {
+	grid-area: header;
+}
+
+.sidenav {
+	grid-area: sidenav;
+	// display: flex;
+	// flex-direction: column;
+	height: 100%;
+	// width: 240px;
+	position: fixed;
+	overflow-y: auto;
+	// transform: translateX(-245px);
+	transition: all 0.6s ease-in-out;
+	z-index: 999;
+}
+
+.main {
+	grid-area: main;
+}
+
+.footer {
+	grid-area: footer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 16px;
+}
+
+@media only screen and (min-width: 768px) {
+	.grid-container {
+		grid-template-columns: auto 1fr;
+		grid-template-areas:
+			'sidenav header'
+			'sidenav main'
+			'sidenav footer';
+	}
+	.sidenav {
+		position: relative;
+		transform: translateX(0);
+	}
+	.collapsed {
+		// & > .sidenav {
+		//     width: auto;
+		// }
+		&.grid-container {
+			grid-template-columns: auto 1fr;
+		}
+	}
+}
