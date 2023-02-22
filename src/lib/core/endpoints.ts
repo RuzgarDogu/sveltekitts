@@ -7,6 +7,9 @@ class Database {
           this.db = axios.create({
             baseURL: APIURL,
             timeout: 10000,
+            // headers: {
+            //   Authorization : `Bearer ${import.meta.env.ENDPOINT_KEY}`
+            // }
           })
       }
       get = async (path:string, params:object={}) => {

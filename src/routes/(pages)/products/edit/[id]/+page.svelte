@@ -2,7 +2,7 @@
     import type { PageData } from './$types'
     import { Input, Select, Textarea } from 'flowbite-svelte'
 	  import { ListItem } from '@components'
-	import type { HtmlElement } from '@interfaces';
+	  import type { HtmlElement } from '@interfaces';
     export let data: PageData;
     $: ({ product, categories } = data)
 
