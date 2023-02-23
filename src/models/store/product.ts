@@ -1,26 +1,36 @@
 import DB from '$lib/core/endpoints';
 import type { HtmlElement, IsProduct, IsProductObject } from '@interfaces';
 class Product implements IsProduct {
-	id: number;
-	title?: string;
-	description?: string;
-	price?: number;
-	rating?: number;
-	isActive?: number;
-	category?: number;
-	image?: string;
-	createdAt?: string;
+	id: number
+	title?: string
+	description?: string
+	price?: number
+	discountPercentage?: number
+	rating?: number
+	stock?: number
+	brand?: string
+	category?: string
+	thumbnail?: string
+	images?: string[]
+	discountedPrice?: number
+	quantity?: number
+	total?: number
 
 	constructor(obj: IsProductObject) {
-		this.id = obj.id;
-		this.title = obj.title;
-		this.description = obj.description;
-		this.price = obj.price;
-		this.rating = obj.rating;
-		this.isActive = obj.isActive;
-		this.category = obj.category;
-		this.image = obj.image;
-		this.createdAt = obj.createdAt;
+		this.id = obj.id
+		this.title = obj.title
+		this.description = obj.description
+		this.price = obj.price
+		this.discountPercentage = obj.discountPercentage
+		this.rating = obj.rating
+		this.stock = obj.stock
+		this.brand = obj.brand
+		this.category = obj.category
+		this.thumbnail = obj.thumbnail
+		this.images = obj.images
+		this.discountedPrice = obj.discountedPrice
+		this.quantity = obj.quantity
+		this.total = obj.total
 	}
 	display = () => {
 		window.location = '/products/' + this.id;

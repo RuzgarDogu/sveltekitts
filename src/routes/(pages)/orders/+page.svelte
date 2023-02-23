@@ -1,24 +1,14 @@
 <script lang="ts">
-	import type { IsProduct } from '@interfaces';
-	import { ProductCard } from '@modules';
-	import type { PageData } from './$types';
-	import { Modal } from 'flowbite-svelte';
-	import { PageHeader } from '@components';
+    import type { PageData } from './$types';
+    import { PageHeader } from '@components';
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Checkbox} from 'flowbite-svelte';
+    export let data: PageData;
 
+    console.log(data)
 
-	export let data: PageData;
-	$: ({ products, categories } = data)
-	console.log("data",data)
-	let categoryFilter: number[] = [];
-	let filterModal = false;
-	const filterByCategory = (dt: IsProduct[], f: string[]): IsProduct[] => {
-		return dt.filter((d) => f.includes(d.category));
-	};
 </script>
-
-
-<PageHeader title="Ürünler">
-	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
+<PageHeader title="Siparişler">
+    <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
 		<label for="topbar-search" class="sr-only">Search</label>
 		<div class="relative lg:w-96">
 			<div
@@ -77,35 +67,38 @@
 	</a>
 </PageHeader>
 
+<div class="flex flex-col p-8">
+  <Table hoverable={true}>
+    <TableHead>
+      <TableHeadCell class="!p-4"><Checkbox /></TableHeadCell>
+      <TableHeadCell>#</TableHeadCell>
+      <TableHeadCell>User ID</TableHeadCell>
+      <TableHeadCell>Ürün Adedi</TableHeadCell>
+      <TableHeadCell>Ara Toplam</TableHeadCell>
+      <TableHeadCell>İndirim (%)</TableHeadCell>
+      <TableHeadCell>Toplam</TableHeadCell>
+      <TableHeadCell><span class="sr-only"> İncele </span></TableHeadCell>
+    </TableHead>
+    <TableBody class="divide-y">
 
-
-
-
-
-
-				
-
-
-<div class="grid grid grid-cols-1 lg:grid-cols-2">
-	{#each filterByCategory(products, categoryFilter) as product}
-		<div class="p-4">
-			<ProductCard {product} />
-		</div>
-	{/each}
-</div>
-
-<Modal title="Filter Categories" bind:open={filterModal} autoclose>
-	<div class="grid grid-cols-2">
-		{#each categories as category}
-			<label>
-				<input
-					type="checkbox"
-					bind:group={categoryFilter}
-					name="category"
-					value={category}
-				/>
-				{category}
-			</label>
-		{/each}
-	</div>
-</Modal>
+        {#each data.orders as order}
+            <TableBodyRow>
+                <TableBodyCell class="!p-4">
+                <Checkbox />
+                </TableBodyCell>
+                <TableBodyCell>{order.id}</TableBodyCell>
+                <TableBodyCell>{order.userId}</TableBodyCell>
+                <TableBodyCell>{order.totalProducts}</TableBodyCell>
+                <TableBodyCell>{order.total}</TableBodyCell>
+                <TableBodyCell>{!!order.discountedTotal ? 100*(order.total-order.discountedTotal)/order.total : '-'}</TableBodyCell>
+                <TableBodyCell>{order.discountedTotal}</TableBodyCell>
+                <TableBodyCell>
+                <a href="/tables" class="font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    İncele
+                </a>
+                </TableBodyCell>
+            </TableBodyRow>
+            {/each}
+    </TableBody>
+  </Table>
+  </div>

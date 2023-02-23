@@ -4,7 +4,7 @@
 	export let product: IsProduct;
 </script>
 
-<Card image={product.image}>
+<Card image={product.images[0]}>
 	<div class="flex flex-wrap">
 		<h1 class="flex-auto text-lg font-semibold text-slate-900 capitalize">
 			{product.title}

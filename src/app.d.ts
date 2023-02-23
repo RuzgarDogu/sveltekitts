@@ -6,9 +6,7 @@ import type { IsUserObject } from '@interfaces';
 declare global {
 	namespace App {
 		// interface Error {}
-		interface Locals {
-			user: IsUserObject | null;
-		}
+		// interface Locals {}
 		// interface PageData {}
 		// interface Platform {}
 	}

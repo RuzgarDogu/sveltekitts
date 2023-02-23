@@ -5,7 +5,7 @@
 
 	export let data: LayoutData;
 
-	const user = new User(data.user);
+	const user = data.user ? new User(data.user) : null
 
 	let collapsed = false,
 		innerWidth = 0,
@@ -18,6 +18,7 @@
 <svelte:window bind:innerWidth bind:innerHeight />
 
 <div class="app grid-container" class:collapsed>
+	{#if user}
 	<header class="header">
 		<Navbar {user} on:collapsing={() => (collapsed = !collapsed)} />
 	</header>
@@ -26,4 +27,5 @@
 		<slot />
 	</main>
 	<footer class="footer">Footer</footer>
+	{/if}
 </div>
