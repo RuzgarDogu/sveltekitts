@@ -2,9 +2,8 @@ import type { IsUserObject } from '@interfaces';
 import { User } from '@models';
 import type { Cookies } from '@sveltejs/kit';
 import DB from './endpoints';
-
 class Authentication {
-	getFromCookies = async (cookies: Cookies): Promise<IsUserObject> => {
+	getFromCookies = async (cookies: Cookies): Promise<IsUserObject | null> => {
 		const session = cookies.get('session');
 		if (session) {
 			return await Authentication.getByID(session);
