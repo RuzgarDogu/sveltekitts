@@ -8,7 +8,8 @@ class User implements IsUser {
 	email?: string;
 	username?: string;
 	wishlist?: number;
-	avatar?: string;
+	image?: string;
+	token?: string;
 
 	constructor(obj: IsUserObject) {
 		this.id = obj.id;
@@ -17,10 +18,11 @@ class User implements IsUser {
 		this.email = obj.email;
 		this.username = obj.username;
 		this.wishlist = obj.wishlist;
-		this.avatar = obj.avatar;
+		this.image = obj.image;
+		this.token = obj.token;
 	}
 
-	get(sessionid: string): Promise<IsUser> {
+	get(id: number): Promise<IsUser> {
 		return { id: 1 };
 		// return DB.get(`/auth/session/${sessionid}`)
 		return { id: 1 } as IsUser;

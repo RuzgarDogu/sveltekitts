@@ -37,70 +37,13 @@
 </script>
 
 <aside
-	class="w-full md:w-64 hidden md:block sidenav shadow-sm bg-white"
+	class="w-full md:w-64 hidden md:block sidenav shadow-sm bg-white shadow-lg"
 	aria-label="Sidebar"
 	bind:this={sidebar}
 >
 	<ul class="p-4">
 		<li class="flex justify-between">
-			<a class="flex" href="">
-				<svg
-					class="w-6 h-6 mr-2"
-					viewBox="0 0 256 256"
-					xmlns="http://www.w3.org/2000/svg"
-					preserveAspectRatio="xMidYMid"
-					fill="#000000"
-				>
-					<g id="SVGRepo_bgCarrier" stroke-width="0" />
-					<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-					<g id="SVGRepo_iconCarrier">
-						<defs>
-							<filter
-								x="-50%"
-								y="-50%"
-								width="200%"
-								height="200%"
-								filterUnits="objectBoundingBox"
-								id="a"
-							>
-								<feOffset dy="16" in="SourceAlpha" result="shadowOffsetOuter1" />
-								<feGaussianBlur
-									stdDeviation="9"
-									in="shadowOffsetOuter1"
-									result="shadowBlurOuter1"
-								/>
-								<feColorMatrix
-									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.214965466 0"
-									in="shadowBlurOuter1"
-									result="shadowMatrixOuter1"
-								/>
-								<feMerge>
-									<feMergeNode in="shadowMatrixOuter1" />
-									<feMergeNode in="SourceGraphic" />
-								</feMerge>
-							</filter>
-						</defs>
-						<path
-							d="M127.979 155.387L256 27.93v-7.323C256 9.227 246.773 0 235.392 0H20.608C9.227 0 0 9.227 0 20.608v150.304l71.067-70.656 56.912 55.13"
-							fill="#FF9C0B"
-						/>
-						<path
-							d="M71.088 157.83L0 228.767v6.624C0 246.773 9.227 256 20.608 256h214.784c11.381 0 20.608-9.227 20.608-20.608V86.597L127.979 214.053 71.088 157.83"
-							fill="#FB5722"
-						/>
-						<path
-							d="M0 170.912l71.067-70.656 56.912 55.13L256 27.932l-.021 58.682-128 127.44-56.891-56.224L0 228.768v-57.856"
-							fill="#F2F2F2"
-							filter="url(#a)"
-						/>
-						<path
-							d="M99.552 185.968l.005-58.117-28.469 29.978 28.464 28.139"
-							fill="#FF9B07"
-						/>
-					</g>
-				</svg>
-				<span class="truncate">Sveltekit Dashboard</span>
-			</a>
+			<img class="w-36" src="images/arniva-logo-black.jpg" alt="" />
 			<button
 				class="flex md:hidden"
 				on:click={() => (collapsed = true)}
@@ -144,6 +87,29 @@
 			</li>
 			<li>
 				<a
+					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
+					href="/integrations"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+						/>
+					</svg>
+					<span class="sidebar-title ml-3">Entegrasyon</span>
+				</a>
+			</li>
+
+			<li>
+				<a
 					href="/products"
 					data-sveltekit-preload-data
 					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
@@ -166,9 +132,10 @@
 				</a>
 			</li>
 			<li>
-				<a	data-sveltekit-preload-data
+				<a
+					data-sveltekit-preload-data
 					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
-					href="orders"
+					href="/orders"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +161,7 @@
 			<li>
 				<a
 					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
-					href=""
+					href="/users"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -210,10 +177,10 @@
 							d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
 						/>
 					</svg>
-					<span class="sidebar-title ml-3">Kullanıcılar</span>
+					<span class="sidebar-title ml-3">Müşteri Listesi</span>
 				</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a
 					href="/login"
 					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
@@ -234,7 +201,9 @@
 					</svg>
 					<span class="sidebar-title ml-3">Sign In</span>
 				</a>
-			</li>
+			</li> -->
+		</ul>
+		<ul class="space-y-1 pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
 			<li>
 				<a
 					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
@@ -255,30 +224,6 @@
 						/>
 					</svg>
 					<span class="sidebar-title ml-3">Ayarlar</span>
-				</a>
-			</li>
-		</ul>
-		<ul class="space-y-1 pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
-			<li>
-				<a
-					class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
-					href=""
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-						/>
-					</svg>
-					<span class="sidebar-title ml-3">Upgrade to Pro</span>
 				</a>
 			</li>
 			<li>

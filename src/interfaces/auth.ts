@@ -5,7 +5,8 @@ export interface IsUserObject {
 	email?: string;
 	username?: string;
 	wishlist?: number;
-	avatar?: string;
+	image?: string;
+	token?: string;
 }
 
 export interface IsUser extends IsUserObject {
@@ -15,5 +16,5 @@ export interface IsUser extends IsUserObject {
 	register(data: HTMLFormElement): Promise<IsUser>;
 	update(data: HTMLFormElement): Promise<IsUser>;
 	delete(): Promise<IsUser>;
-	get(): Promise<IsUser>;
+	get(id: number): Promise<IsUser>;
 }

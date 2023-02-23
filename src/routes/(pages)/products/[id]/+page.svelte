@@ -17,14 +17,14 @@
 			<p
 				class="text-sm leading-4 font-medium text-white sm:text-slate-500 dark:sm:text-slate-400"
 			>
-				Category
+				Kategori: {product?.category}
 			</p>
 		</div>
 		<div
 			class="grid gap-4 col-start-1 col-end-3 row-start-1 sm:mb-6 sm:grid-cols-4 lg:gap-6 lg:col-start-2 lg:row-end-6 lg:row-span-6 lg:mb-0"
 		>
 			<img
-				src={product?.image || 'images/svelte-logo.png'}
+				src={product?.images[0] || 'images/svelte-logo.png'}
 				alt=""
 				class="w-full h-60 object-cover rounded-lg sm:h-52 sm:col-span-2 lg:col-span-full"
 				loading="lazy"
@@ -78,7 +78,7 @@
 					/>
 					<path d="M14 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
 				</svg>
-				Collingwood, Ontario
+				{product.brand}
 			</dd>
 		</dl>
 		<div
@@ -87,7 +87,7 @@
 			<button
 				type="button"
 				class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
-				>Check</button
+				>Stok Durumu</button
 			>
 			<!-- <button on:click={() => product?.edit()} type="button" class="bg-slate-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Edit this product</button> -->
 			<a
@@ -95,7 +95,7 @@
 				href="/products/edit/{product?.id}"
 				type="button"
 				class="bg-slate-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
-				>Edit this product</a
+				>Ürünü Düzenle</a
 			>
 		</div>
 		<p

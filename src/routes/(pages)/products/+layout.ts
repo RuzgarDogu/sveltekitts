@@ -16,5 +16,5 @@ export const load = (async () => {
 	return {
 		products: Store.get(25),
 		categories: Store.getCategories()
-	}
+	};
 }) satisfies LayoutLoad;

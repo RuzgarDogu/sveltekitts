@@ -56,7 +56,7 @@
 		</svg>
 	</button>
 	<div class="flex items-center md:order-2">
-		<DarkMode class="text-lg">
+		<!-- <DarkMode class="text-lg">
 			<svelte:fragment slot="lightIcon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@
 					/></svg
 				>
 			</svelte:fragment>
-		</DarkMode>
+		</DarkMode> -->
 
 		<button
 			aria-label="Notifications"

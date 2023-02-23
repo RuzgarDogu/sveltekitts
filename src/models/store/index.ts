@@ -11,22 +11,22 @@ class StoreClass implements IsStore {
 		this.products = [];
 	}
 	load = async (limit = 11, skip = 0) => {
-		const response = await DB.get('products', { limit, skip })
-		const products = response.products
+		const response = await DB.get('products', { limit, skip });
+		const products = response.products;
 		for (const product of products) {
 			this.products = [...this.products, new Product(product)];
 		}
-	}
+	};
 	get = async (count = 10) => {
 		const len = this.products.length;
 		if (len < count) {
 			await this.load(count - len, len - 1);
 		}
 		return this.products;
-	}
+	};
 	getCategories = async (): Promise<IsCategory[]> => {
 		return DB.get('products/categories');
-	}
+	};
 	createProduct(obj: IsProductObject): Promise<IsProduct> {
 		return new Promise((resolve, reject) => {
 			DB.post('/products/add', obj)

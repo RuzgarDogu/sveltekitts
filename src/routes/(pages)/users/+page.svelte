@@ -1,21 +1,27 @@
 <script lang="ts">
-	import type { IsProduct } from '@interfaces';
-	import { ProductCard } from '@modules';
-	import type { PageData } from './$types';
-	import { Modal } from 'flowbite-svelte';
-	import { PageHeader } from '@components';
-
-	export let data: PageData;
-	$: ({ products, categories } = data);
-	console.log('data', data);
-	let categoryFilter: number[] = ['fragrances','laptops','skincare'];
-	let filterModal = false;
-	const filterByCategory = (dt: IsProduct[], f: string[]): IsProduct[] => {
-		return dt.filter((d) => f.includes(d.category));
-	};
+    import type { PageData } from './$types';
+    import { PageHeader } from '@components';
+    import {
+		Avatar,
+		Modal,
+		Button,
+		Spinner,
+		Toast,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		Checkbox,
+		Dropdown,
+		DropdownItem
+	} from 'flowbite-svelte';
+    export let data: PageData;
+    console.log(data)
 </script>
 
-<PageHeader title="Ürünler">
+<PageHeader title="Müşteriler">
 	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
 		<label for="topbar-search" class="sr-only">Search</label>
 		<div class="relative lg:w-96">
@@ -42,7 +48,6 @@
 		</div>
 	</form>
 	<button
-		on:click={() => (filterModal = true)}
 		class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
 	>
 		<svg
@@ -73,26 +78,47 @@
 	</a>
 </PageHeader>
 
-<div class="grid grid grid-cols-1 lg:grid-cols-2">
-	{#each filterByCategory(products, categoryFilter) as product}
-		<div class="p-4">
-			<ProductCard {product} />
-		</div>
-	{/each}
+<div class="flex flex-col px-8 py-2">
+	<Table hoverable={true}>
+		<TableHead>
+			<TableHeadCell class="!p-4"><Checkbox /></TableHeadCell>
+			<TableHeadCell>Adı</TableHeadCell>
+			<TableHeadCell>Soyadı</TableHeadCell>
+			<TableHeadCell>Epostası</TableHeadCell>
+			<TableHeadCell>Telefonu</TableHeadCell>
+			<TableHeadCell>Profil Resmi</TableHeadCell>
+			<TableHeadCell>Kullanıcı Adı</TableHeadCell>
+			<TableHeadCell>İncele</TableHeadCell>
+		</TableHead>
+		<TableBody class="divide-y">
+			{#each data.customers as customer}
+				<TableBodyRow>
+					<TableBodyCell class="!p-4">
+						<Checkbox />
+					</TableBodyCell>
+					<TableBodyCell class="font-light">{customer.firstName}</TableBodyCell>
+					<TableBodyCell class="font-light">{customer.lastName}</TableBodyCell>
+					<TableBodyCell class="font-light">{customer.email}</TableBodyCell>
+					<TableBodyCell class="font-light">{customer.phone}</TableBodyCell>
+					<TableBodyCell class="font-light">
+                        <img
+						src={customer.image}
+						alt=""
+						class="flex-none w-14 h-14 rounded-full object-cover"
+						loading="lazy"
+						decoding="async"
+                        />
+                    </TableBodyCell>
+                    <TableBodyCell class="font-light">{customer.username}</TableBodyCell>
+                    <TableBodyCell>
+						<button
+							class="font-medium text-blue-600 hover:underline dark:text-blue-500"
+						>
+							İncele
+						</button>
+					</TableBodyCell>
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</Table>
 </div>
-
-<Modal title="Kategorileri Filtrele" bind:open={filterModal} autoclose>
-	<div class="grid grid-cols-2">
-		{#each categories as category}
-			<label>
-				<input
-					type="checkbox"
-					bind:group={categoryFilter}
-					name="category"
-					value={category}
-				/>
-				{category}
-			</label>
-		{/each}
-	</div>
-</Modal>

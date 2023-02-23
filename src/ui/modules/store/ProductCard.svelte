@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { IsProduct } from '@interfaces';
+	import { Badge } from 'flowbite-svelte'
 	import { Card } from '@components';
 	export let product: IsProduct;
 </script>
@@ -12,45 +13,34 @@
 		<div class="text-lg font-semibold text-slate-500">
 			${product.price}
 		</div>
-		<div
-			class="w-full flex-none text-sm font-medium text-slate-700 mt-2 text-sky-500 dark:text-sky-400"
-		>
-			{product.isActive ? 'In Stock' : 'Not Available'}
-		</div>
+
+		
+
+
+
+
+		
+	</div>
+	<div class="min-w-0 relative flex-auto">
+		<dl class="flex flex-wrap text-sm leading-6 font-medium">
+			<div
+				class="absolute flex items-center space-x-1"
+			>
+				<dt class="text-sky-500">
+					<span class="sr-only">Star rating</span>
+					<svg width="16" height="20" fill="currentColor">
+						<path
+							d="M7.05 3.691c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.372 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.539 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.363-1.118L.98 9.483c-.784-.57-.381-1.81.587-1.81H5.03a1 1 0 00.95-.69L7.05 3.69z"
+						/>
+					</svg>
+				</dt>
+				<dd>{product.rating}</dd>
+			</div>
+		</dl>
 	</div>
 	<div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
-		<div class="space-x-2 flex text-sm">
-			<label>
-				<input
-					class="sr-only peer"
-					name="size-{product.id}"
-					type="radio"
-					value="xs"
-					checked
-				/>
-				<div
-					class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white"
-				>
-					XS
-				</div>
-			</label>
-			<label>
-				<input class="sr-only peer" name="size-{product.id}" type="radio" value="s" />
-				<div
-					class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white"
-				>
-					S
-				</div>
-			</label>
-			<label>
-				<input class="sr-only peer" name="size-{product.id}" type="radio" value="m" />
-				<div
-					class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white"
-				>
-					M
-				</div>
-			</label>
-		</div>
+		<Badge class="mt-4 p-4" rounded color="green">{product.category}</Badge>
+		
 	</div>
 	<div class="flex space-x-4 text-sm font-medium">
 		<div class="flex-auto flex space-x-4">
@@ -59,7 +49,7 @@
 				href="/products/{product.id}"
 				class="h-10 flex items-center justify-center px-6 font-semibold rounded-md bg-indigo-100 text-indigo-800"
 			>
-				Product Details
+				Ürün Detayları
 			</a>
 		</div>
 		<button

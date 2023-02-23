@@ -19,7 +19,7 @@
 						<a data-sveltekit-preload-data href="/products/{product.id}">
 							<article class="flex items-start space-x-4 p-2">
 								<img
-									src={product.image}
+									src={product.images[0]}
 									class="flex-none rounded-md bg-slate-100 h-16 w-16"
 									alt="productimage"
 								/>
@@ -43,7 +43,7 @@
 										</div>
 										<div class="text-xs text-slate-400">
 											<dt class="sr-only">Year</dt>
-											<dd>{product.createdAt}</dd>
+											<dd>{product.category}</dd>
 										</div>
 									</dl>
 								</div>

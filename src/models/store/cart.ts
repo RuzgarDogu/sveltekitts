@@ -1,21 +1,23 @@
-import DB from '$lib/core/endpoints'
-import type { IsCart, IsOrderObject } from '@interfaces'
-import { Order } from '@models'
+import DB from '$lib/core/endpoints';
+import type { IsCart, IsOrderObject } from '@interfaces';
+import { Order } from '@models';
 
 class CartClass implements IsCart {
-	orders?: IsOrderObject[]
+	orders?: IsOrderObject[];
 
 	constructor() {
-		this.orders = []
+		this.orders = [];
 	}
-    get = async (): Promise<IsOrderObject[]> => {
-        const response = await DB.get('carts')
-        const data = response.carts
-        for (const order of data) {
+	get = async (): Promise<IsOrderObject[]> => {
+		if (this.orders?.length > 0) return this.orders;
+		const response = await DB.get('carts');
+		const data = response.carts;
+		for (const order of data) {
+			order.userDetails = await DB.get(`users/${order.userId}`);
 			this.orders = [...this.orders, new Order(order)];
 		}
-        return this.orders
-    }
+		return this.orders;
+	};
 }
 
 export const Cart: IsCart = new CartClass();
