@@ -14,7 +14,7 @@ export const load = (async () => {
 
 	// Doğru kullanım:
 	return {
-		products: Store.get(),
+		products: Store.get(25),
 		categories: Store.getCategories()
-	};
+	}
 }) satisfies LayoutLoad;

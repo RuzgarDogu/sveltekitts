@@ -5,29 +5,28 @@ import { Product } from '@models';
 import DB from '$lib/core/endpoints';
 
 class StoreClass implements IsStore {
-	url: string;
 	products: Product[];
 
-	constructor(url: string) {
-		this.url = url;
+	constructor() {
 		this.products = [];
 	}
-	load = async (count = 11, offset = 0) => {
-		const products = await DB.get('/products?_limit=' + count + '&_offset=' + offset);
+	load = async (limit = 11, skip = 0) => {
+		const response = await DB.get('products', { limit, skip })
+		const products = response.products
 		for (const product of products) {
 			this.products = [...this.products, new Product(product)];
 		}
-	};
-	get = async (count = 1) => {
+	}
+	get = async (count = 10) => {
 		const len = this.products.length;
 		if (len < count) {
 			await this.load(count - len, len - 1);
 		}
 		return this.products;
-	};
+	}
 	getCategories = async (): Promise<IsCategory[]> => {
-		return DB.get('/category');
-	};
+		return DB.get('products/categories');
+	}
 	createProduct(obj: IsProductObject): Promise<IsProduct> {
 		return new Promise((resolve, reject) => {
 			DB.post('/products/add', obj)
@@ -44,4 +43,4 @@ class StoreClass implements IsStore {
 	}
 }
 
-export const Store: IsStore = new StoreClass(APIURL);
+export const Store: IsStore = new StoreClass();

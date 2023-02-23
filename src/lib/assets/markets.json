@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "title": "Hepsiburada",
+        "url": "https://www.hepsiburada.com/",
+        "image": "images/markets/hepsiburada.png",
+        "description": "Hepsiburada.com, Türkiye'nin en büyük online alışveriş sitesi. 1.5 milyon ürün, 1000'den fazla marka, 1 milyonun üzerinde üye, 7/24 hizmet veriyor."
+    },
+    {
+        "id": 2,
+        "title": "Trendyol",
+        "url": "https://www.trendyol.com/",
+        "image": "images/markets/trendyol.png",
+        "description": "Giyim, bilgisayar, cep telefonu, kozmetik, beyaz eşya, süpermarket & daha aradığın yüz binlerce indirimli ürün en uygun fiyatlar ve kampanyalarla ..."
+    },
+    {
+        "id": 3,
+        "title": "N11",
+        "url": "https://www.n11.com/",
+        "image": "images/markets/n11.png",
+        "description": "On Binlerce Marka ve Milyonlarca Ürün, İndirim ve Fırsatlarla Dolu n11'de! 7/24 Destek ve Ödeme Koruma Sistemiyle Fırsatlarla Dolu..."
+    },
+    {
+        "id": 4,
+        "title":"Shopify",
+        "url":"https://www.shopify.com/",
+        "image":"images/markets/shopify.png",
+        "description":"Shopify'a hoş geldiniz. İster yeni bir online mağaza açıyor ister Shopify'ı e-ticaret platformunuz olarak kullanmayı düşünüyor olun, size sunulan seçenekler ..."
+    },
+    {
+        "id": 5,
+        "title":"Amazon",
+        "url":"https://www.amazon.com/",
+        "image":"images/markets/amazon.svg",
+        "description":"Güvenli ve rahat alışverişin tadını çıkarın, uygun fiyatlar ve geniş ürün yelpazesi ile. Türler: Kitap, Bebek Bezleri, Kişisel Bakım ve Kozmetik, Cep Telefonları, Elektronik."
+    }
+]
