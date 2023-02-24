@@ -36,7 +36,7 @@
 		orderDetails = true;
 	};
 
-	const paymentTypes = ['Credit Card', 'Banka Transferi', 'Paypal', 'Bitcoin'];
+	const paymentTypes = ['Kredi Kartı', 'Banka Transferi', 'Paypal', 'Bitcoin'];
 </script>
 
 <Toast

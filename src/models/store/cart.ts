@@ -17,7 +17,7 @@ class CartClass implements IsCart {
 			this.orders = [...this.orders, new Order(order)];
 		}
 		return this.orders;
-	};
+	}
 }
 
 export const Cart: IsCart = new CartClass();
