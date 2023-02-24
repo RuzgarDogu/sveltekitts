@@ -18,6 +18,11 @@ class CartClass implements IsCart {
 		}
 		return this.orders;
 	}
+	getByUser = async (userId: string): Promise<IsOrderObject[]> => {
+		const response = await DB.get(`carts/user/${userId}`);
+		const data = response.carts;
+		return data[0]
+	}
 }
 
 export const Cart: IsCart = new CartClass();

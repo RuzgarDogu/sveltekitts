@@ -1,3 +1,4 @@
+import { Cart } from '@models';
 import type { PageLoad } from './$types';
 
 export const load = (async () => {
@@ -6,7 +7,7 @@ export const load = (async () => {
         datasets: [
           {
             label: '% Satışlar',
-            data: [12345987, 5324456, 3212111, 1211457, 978202, 3121965],
+            data: [10345987, 5324456, 3212111, 1211457, 1978202, 3121965],
             backgroundColor: [
               'rgba(255, 134,159,0.4)',
               'rgba(98,  182, 239,0.4)',
@@ -29,6 +30,7 @@ export const load = (async () => {
       };
       
 	return {
-		chartdata
+		chartdata,
+    orders: await Cart.getByUser(1),
 	};
 }) satisfies PageLoad;
