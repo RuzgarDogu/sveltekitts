@@ -12,23 +12,18 @@ class Authentication {
 	};
 
 	static getByID = async (id: string) => {
-		const user = await DB.get(`/users/${id}`);
+		const user = await DB.get(`users/${id}`);
+		console.log('--------------');
 		console.log(user);
+		console.log('--------------');
 		return user || null;
 	};
 
 	static check = async (username: string, password: string) => {
-		const user = await DB.post(`auth/login`, { username, password });
-		console.log('--------------');
-		console.log(user);
-		console.log('--------------');
-		if (user) {
-			if (user.password === password) {
-				return new User(user);
-			}
-			// Henüz password kontrolü yok
-			// o yüzden şimdilik true döndürüyoruz
-			return new User(user);
+		const user = await DB.get(`users`, { username, password });
+		if (user.length > 0) {
+			const newUser = user[0];
+			return new User(newUser);
 		}
 		return false;
 	};

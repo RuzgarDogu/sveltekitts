@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { IsProduct } from '@interfaces';
-	import { Badge } from 'flowbite-svelte'
+	import { Badge } from 'flowbite-svelte';
 	import { Card } from '@components';
 	export let product: IsProduct;
 </script>
@@ -13,19 +13,10 @@
 		<div class="text-lg font-semibold text-slate-500">
 			${product.price}
 		</div>
-
-		
-
-
-
-
-		
 	</div>
 	<div class="min-w-0 relative flex-auto">
 		<dl class="flex flex-wrap text-sm leading-6 font-medium">
-			<div
-				class="absolute flex items-center space-x-1"
-			>
+			<div class="absolute flex items-center space-x-1">
 				<dt class="text-sky-500">
 					<span class="sr-only">Star rating</span>
 					<svg width="16" height="20" fill="currentColor">
@@ -40,7 +31,6 @@
 	</div>
 	<div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
 		<Badge class="mt-4 p-4" rounded color="green">{product.category}</Badge>
-		
 	</div>
 	<div class="flex space-x-4 text-sm font-medium">
 		<div class="flex-auto flex space-x-4">

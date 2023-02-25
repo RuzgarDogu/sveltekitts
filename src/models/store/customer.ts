@@ -2,7 +2,7 @@ import { APIURL } from '@config';
 import DB from '$lib/core/endpoints';
 import type { IsCustomer } from '@interfaces';
 
-class CustomerClass  {
+class CustomerClass {
 	customers: IsCustomer[];
 
 	constructor() {
@@ -10,8 +10,8 @@ class CustomerClass  {
 	}
 	load = async () => {
 		const response = await DB.get('users');
-		this.customers= response.users;
-	}
+		this.customers = response;
+	};
 	get = async (count = 10) => {
 		if (!this.customers.length) {
 			await this.load();

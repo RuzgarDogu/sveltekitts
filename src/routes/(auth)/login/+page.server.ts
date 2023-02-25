@@ -5,8 +5,6 @@ import { dev } from '$app/environment';
 
 export const load = (async ({ cookies }) => {
 	return { result: true };
-	return await User.getFromSession(cookies.get('sessionid'));
-	return { user };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
@@ -33,13 +31,6 @@ export const actions: Actions = {
 			};
 		} else {
 			cookies.set('id', user.id, {
-				path: '/',
-				httpOnly: true,
-				sameSite: 'strict',
-				secure: !dev,
-				maxAge: 60 * 60 * 24 * 30
-			});
-			cookies.set('session', user.token, {
 				path: '/',
 				httpOnly: true,
 				sameSite: 'strict',

@@ -24,7 +24,7 @@ class Order implements IsOrder {
 	}
 
 	initProducts = (products: IsProductObject[]): IsProductObject[] => {
-		if (this.products?.length > 0) return this.products
+		if (this.products?.length > 0) return this.products;
 		let newProducts: IsProductObject[] = [];
 		for (const product of products) {
 			newProducts = [...newProducts, new Product(product)];

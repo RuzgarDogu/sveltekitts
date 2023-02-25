@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type { PageData } from './$types';
-    import { PageHeader } from '@components';
-    import {
+	import type { PageData } from './$types';
+	import { PageHeader } from '@components';
+	import {
 		Avatar,
 		Modal,
 		Button,
@@ -17,8 +17,8 @@
 		Dropdown,
 		DropdownItem
 	} from 'flowbite-svelte';
-    export let data: PageData;
-    console.log(data)
+	export let data: PageData;
+	console.log(data);
 </script>
 
 <PageHeader title="Müşteriler">
@@ -101,16 +101,16 @@
 					<TableBodyCell class="font-light">{customer.email}</TableBodyCell>
 					<TableBodyCell class="font-light">{customer.phone}</TableBodyCell>
 					<TableBodyCell class="font-light">
-                        <img
-						src={customer.image}
-						alt=""
-						class="flex-none w-14 h-14 rounded-full object-cover"
-						loading="lazy"
-						decoding="async"
-                        />
-                    </TableBodyCell>
-                    <TableBodyCell class="font-light">{customer.username}</TableBodyCell>
-                    <TableBodyCell>
+						<img
+							src={customer.image}
+							alt=""
+							class="flex-none w-14 h-14 rounded-full object-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+					</TableBodyCell>
+					<TableBodyCell class="font-light">{customer.username}</TableBodyCell>
+					<TableBodyCell>
 						<button
 							class="font-medium text-blue-600 hover:underline dark:text-blue-500"
 						>

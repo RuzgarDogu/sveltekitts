@@ -7,9 +7,11 @@
 	let selected_markets = [];
 </script>
 
-<PageHeader title="Entegrasyonlar {selected_markets.length ? ' :' + selected_markets.length + ' Adet Seçili' : ''}">
-
-</PageHeader>
+<PageHeader
+	title="Entegrasyonlar {selected_markets.length
+		? ' :' + selected_markets.length + ' Adet Seçili'
+		: ''}"
+/>
 
 <div class="grid gap-6 w-full md:grid-cols-3 p-12">
 	{#each markets as market}
@@ -24,18 +26,42 @@
 					<Toggle bind:group={selected_markets} value={market.id} />
 					<div class="flex">
 						<a
-						href={market.url}
-						class="mr-2 bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-semibold h-8 px-6 rounded-lg w-full flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400"
-						>Ziyaret Et</a
-					>
+							href={market.url}
+							class="mr-2 bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-semibold h-8 px-6 rounded-lg w-full flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400"
+							>Ziyaret Et</a
+						>
 
-					<a class="flex items-center bg-blue-400 p-0 px-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 text-sm s-IVztjhbeuSHt" href="">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="w-6 h-6 s-IVztjhbeuSHt"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" class="s-IVztjhbeuSHt"></path></svg> </a>
-					
-
+						<a
+							class="flex items-center bg-blue-400 p-0 px-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 text-sm s-IVztjhbeuSHt"
+							href=""
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="#fff"
+								class="w-6 h-6 s-IVztjhbeuSHt"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+									class="s-IVztjhbeuSHt"
+								/></svg
+							>
+						</a>
 					</div>
 				</div>
 			</div>
 		</Checkbox>
 	{/each}
 </div>
+
+<style>
+	.peer:checked ~ .peer-checked\:text-gray-600 {
+		--tw-text-opacity: 1;
+		color: rgb(75 85 99 / var(--tw-text-opacity));
+		background: #ddf9dc !important;
+		border-color: #ddf3dd !important;
+	}
+</style>

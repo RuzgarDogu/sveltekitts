@@ -1,1 +1,1 @@
-<img class="rounded-xl" src="images/dummychart.png" alt="">
+<img class="rounded-xl" src="images/dummychart.png" alt="" />

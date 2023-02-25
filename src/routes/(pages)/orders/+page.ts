@@ -4,7 +4,7 @@ import markets from '$lib/assets/markets.json';
 
 export const load = (async () => {
 	const orders = await Cart.get();
-	console.log("orders", orders)
+	console.log('orders', orders);
 	orders.map((order) => {
 		const rnd = Math.floor(Math.random() * markets.length);
 		order.market = markets[rnd];

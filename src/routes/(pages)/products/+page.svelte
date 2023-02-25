@@ -8,7 +8,7 @@
 	export let data: PageData;
 	$: ({ products, categories } = data);
 	console.log('data', data);
-	let categoryFilter: number[] = ['fragrances','laptops','skincare'];
+	let categoryFilter: number[] = ['fragrances', 'laptops', 'skincare'];
 	let filterModal = false;
 	const filterByCategory = (dt: IsProduct[], f: string[]): IsProduct[] => {
 		return dt.filter((d) => f.includes(d.category));
