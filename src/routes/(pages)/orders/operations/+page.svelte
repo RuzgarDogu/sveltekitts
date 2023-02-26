@@ -1,69 +1,23 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import { goto } from '$app/navigation';
 	import { PageHeader } from '@components';
-	import {
-		Avatar,
-		Modal,
-		Button,
-		Spinner,
-		Toast,
-		Table,
-		TableBody,
-		TableBodyCell,
-		TableBodyRow,
-		TableHead,
-		TableHeadCell,
-		Checkbox,
-		Dropdown,
-		DropdownItem
-	} from 'flowbite-svelte';
-	import { slide } from 'svelte/transition';
-	export let data: PageData;
-	let toast = false,
-		orderDetails = false,
+	import { Button, Checkbox, Dropdown, DropdownItem, Modal, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
+    import type { PageData } from './$types';
+    
+    export let data: PageData;
+    console.log(data);
+    let orderDetails = false,
 		selectedOrder = null;
 
-	const test = 123.342442;
-	// round to 2 decimal places with turkish locale
-	const test2 = test.toLocaleString('tr-TR', {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	});
-
+        const paymentTypes = ['Kredi Kartı', 'Banka Transferi', 'Paypal', 'Bitcoin'];
+	
 	const openOrderDetails = (order) => {
 		console.log(order);
 		selectedOrder = order;
 		orderDetails = true;
 	};
-
-	const paymentTypes = ['Kredi Kartı', 'Banka Transferi', 'Paypal', 'Bitcoin'];
 </script>
 
-<Toast
-	style="background-color: rgb(158, 255, 226);"
-	simple
-	color="green"
-	position="top-right"
-	transition={slide}
-	bind:open={toast}
->
-	<svelte:fragment slot="icon">
-		<svg
-			aria-hidden="true"
-			class="w-5 h-5"
-			fill="currentColor"
-			viewBox="0 0 20 20"
-			xmlns="http://www.w3.org/2000/svg"
-			><path
-				fill-rule="evenodd"
-				d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-				clip-rule="evenodd"
-			/></svg
-		>
-		<span class="sr-only">Check icon</span>
-	</svelte:fragment>
-	Arniva'ya gönderildi.</Toast
->
 
 <PageHeader title="Siparişler">
 	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
@@ -126,118 +80,54 @@
 <div class="flex flex-col px-8 py-2">
 	<Table hoverable={true}>
 		<TableHead>
-			<TableHeadCell class="!p-4"><Checkbox /></TableHeadCell>
-			<TableHeadCell>İşlemler</TableHeadCell>
-			<TableHeadCell>Müşteri</TableHeadCell>
-			<TableHeadCell>Ürün Adedi</TableHeadCell>
-			<TableHeadCell>Market</TableHeadCell>
-			<TableHeadCell>Ara Toplam</TableHeadCell>
-			<TableHeadCell>İndirim (%)</TableHeadCell>
-			<TableHeadCell>Toplam</TableHeadCell>
-			<TableHeadCell>İncele</TableHeadCell>
+			<TableHeadCell>#</TableHeadCell>
+			<TableHeadCell>Taşıyıcı</TableHeadCell>
+			<TableHeadCell>Tipi</TableHeadCell>
+			<TableHeadCell>Alıcı</TableHeadCell>
+			<TableHeadCell>Awb #</TableHeadCell>
+			<TableHeadCell>Awb Tarihi</TableHeadCell>
+			<TableHeadCell>Müşteri Kg</TableHeadCell>
+			<TableHeadCell>Hacim Kg</TableHeadCell>
+			<TableHeadCell>Ülke</TableHeadCell>
 		</TableHead>
 		<TableBody class="divide-y">
-			{#each data.orders as order}
-				<TableBodyRow class={order.senttocargo ? 'lightolive' : ''}>
-					<TableBodyCell class="!p-4">
-						<Checkbox />
+			{#each data.cargo_orders as order}
+				<TableBodyRow class="cursor-pointer" on:click={() => goto('/orders/operations/'+order.id)}>
+					<TableBodyCell>
+						{order.id}
 					</TableBodyCell>
 					<TableBodyCell>
-						<button
-							id="dropdownMenuIconButton"
-							data-dropdown-toggle="dropdownDots"
-							class="islemler-menu-{order.id} inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-							type="button"
-						>
-							<svg
-								class="w-6 h-6"
-								aria-hidden="true"
-								fill="currentColor"
-								viewBox="0 0 20 20"
-								xmlns="http://www.w3.org/2000/svg"
-								><path
-									d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
-								/></svg
-							>
-						</button>
-						<Dropdown triggeredBy=".islemler-menu-{order.id}">
-							<DropdownItem>Onayla</DropdownItem>
-							<DropdownItem>Reddet</DropdownItem>
-							<DropdownItem
-								on:click={() => {
-									if(order.sendToCargo()) {
-										order.status = 'pending';
-										order.status = 'approved';
-										order.senttocargo = true;
-										toast = true;
-										setTimeout(() => {
-											toast = false;
-										}, 5000);
-									} else {
-										alert("Bu sipariş daha önceden kargoya gönderilmiş")
-									}
-								}}>Arniva'ya gönder</DropdownItem
-							>
-							<DropdownItem
-								class="flex items-center p-3 -mb-1 text-sm font-medium text-red-600 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline"
-								slot="footer"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke-width="1.5"
-									stroke="currentColor"
-									class="w-5 h-5 mr-1"
-									><path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
-									/></svg
-								>
-								Siparişi Sil
-							</DropdownItem>
-						</Dropdown>
+						{order.carrier}
 					</TableBodyCell>
-					<TableBodyCell class="text-green-600">
-						{#if order.status == 'pending'}
-							<Spinner class="mr-3" size="4" />
-						{:else}
-							{order.userDetails.firstName} {order.userDetails.lastName}
-						{/if}
-					</TableBodyCell>
-					<TableBodyCell class="font-light">{order.totalProducts}</TableBodyCell>
-					<TableBodyCell
-						><img class="w-16" src={order.market.image} alt="" /></TableBodyCell
-					>
-					<TableBodyCell>{order.total}</TableBodyCell>
-					<TableBodyCell
-						>{!!order.discountedTotal
-							? (
-									(100 * (order.total - order.discountedTotal)) /
-									order.total /
-									3
-							  ).toLocaleString('tr-TR', {
-									minimumFractionDigits: 2,
-									maximumFractionDigits: 2
-							  })
-							: '-'}</TableBodyCell
-					>
-					<TableBodyCell>{order.discountedTotal}</TableBodyCell>
 					<TableBodyCell>
-						<button
-							on:click={() => openOrderDetails(order)}
-							class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-						>
-							İncele
-						</button>
+						{order.type}
 					</TableBodyCell>
+					<TableBodyCell>
+						{order.userDetails.firstName} {order.userDetails.lastName}
+					</TableBodyCell>
+					<TableBodyCell>
+						{order.awb}
+					</TableBodyCell>
+					<TableBodyCell>
+						{order.awb_date}
+					</TableBodyCell>
+					<TableBodyCell>
+						{order.weight}
+					</TableBodyCell>
+					<TableBodyCell>
+						{order.volume_weight}
+					</TableBodyCell>
+					<TableBodyCell>
+						{order.country}
+					</TableBodyCell>
+
 				</TableBodyRow>
 			{/each}
 		</TableBody>
 	</Table>
 </div>
 
+<!-- svelte-ignore missing-declaration -->
 <Modal class="min-w-full" title="Sipariş Detayları" bind:open={orderDetails} size="lg" autoclose>
 	<div class="grid grid-cols-2 space-x-6">
 		<div>

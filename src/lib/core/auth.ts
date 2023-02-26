@@ -13,9 +13,6 @@ class Authentication {
 
 	static getByID = async (id: string) => {
 		const user = await DB.get(`users/${id}`);
-		console.log('--------------');
-		console.log(user);
-		console.log('--------------');
 		return user || null;
 	};
 

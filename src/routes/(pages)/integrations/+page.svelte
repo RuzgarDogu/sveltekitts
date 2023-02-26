@@ -58,10 +58,8 @@
 </div>
 
 <style>
-	.peer:checked ~ .peer-checked\:text-gray-600 {
-		--tw-text-opacity: 1;
-		color: rgb(75 85 99 / var(--tw-text-opacity));
-		background: #ddf9dc !important;
-		border-color: #ddf3dd !important;
-	}
+[type='checkbox']:checked + div {
+	background: #ddf9dc !important;
+	border-color: #ddf3dd !important;
+}
 </style>
