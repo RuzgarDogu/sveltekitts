@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import { PageHeader } from '@components';
-	import {
+    import type { PageData } from './$types';
+    import {
 		Avatar,
 		Modal,
 		Button,
@@ -17,11 +17,16 @@
 		Dropdown,
 		DropdownItem
 	} from 'flowbite-svelte';
-	export let data: PageData;
-	console.log(data);
+	import { invalidate } from '$app/navigation';
+    export let data: PageData;
+    $: ({ countries } = data)
+    console.log(countries);
+	const load_more = () => {
+		invalidate('loadmore')
+	};
 </script>
 
-<PageHeader title="Müşteriler">
+<PageHeader title="Ülke Listesi">
 	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
 		<label for="topbar-search" class="sr-only">Search</label>
 		<div class="relative lg:w-96">
@@ -82,43 +87,57 @@
 	<Table hoverable={true}>
 		<TableHead>
 			<TableHeadCell class="!p-4"><Checkbox /></TableHeadCell>
-			<TableHeadCell>Adı</TableHeadCell>
-			<TableHeadCell>Soyadı</TableHeadCell>
-			<TableHeadCell>Epostası</TableHeadCell>
-			<TableHeadCell>Telefonu</TableHeadCell>
-			<TableHeadCell>Profil Resmi</TableHeadCell>
-			<TableHeadCell>Kullanıcı Adı</TableHeadCell>
-			<TableHeadCell>İncele</TableHeadCell>
+			<TableHeadCell>İşlemler</TableHeadCell>
+			<TableHeadCell>Ülke</TableHeadCell>
+			<TableHeadCell>Tel Kodu</TableHeadCell>
+			<TableHeadCell>Ülke Kodu</TableHeadCell>
+			<TableHeadCell>Bayrak</TableHeadCell>
 		</TableHead>
 		<TableBody class="divide-y">
-			{#each data.customers as customer}
+			{#each countries as country}
 				<TableBodyRow>
 					<TableBodyCell class="!p-4">
-						<Checkbox />
-					</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.firstName}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.lastName}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.email}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.phone}</TableBodyCell>
-					<TableBodyCell class="font-light">
-						<img
-							src={customer.image}
-							alt=""
-							class="flex-none w-14 h-14 rounded-full object-cover"
-							loading="lazy"
-							decoding="async"
-						/>
-					</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.username}</TableBodyCell>
-					<TableBodyCell>
-						<button
-							class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-						>
-							İncele
-						</button>
-					</TableBodyCell>
-				</TableBodyRow>
-			{/each}
-		</TableBody>
-	</Table>
+                        <Checkbox />
+                    </TableBodyCell>
+                    <TableBodyCell>
+                        <button
+                        id="dropdownMenuIconButton"
+                        data-dropdown-toggle="dropdownDots"
+                        class="islemler-menu-{country.code} inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        type="button"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                            /></svg
+                        >
+                    </button>
+                    <Dropdown triggeredBy=".islemler-menu-{country.code}">
+                            <DropdownItem>İncele</DropdownItem>
+                            <DropdownItem>Değiştir</DropdownItem>
+                            <DropdownItem>Sil</DropdownItem>
+                        </Dropdown>
+                    </TableBodyCell>
+                    <TableBodyCell>{country.name}</TableBodyCell>
+                    <TableBodyCell>{country.dial_code}</TableBodyCell>
+                    <TableBodyCell>{country.code}</TableBodyCell>
+                    <TableBodyCell>
+                        <object class="rounded-full w-10 h-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300" data="{country.flag}" type="image/png">
+                            <img src="/favicon.png">
+                          </object>
+                    </TableBodyCell>
+                    </TableBodyRow>
+                    {/each}
+        </TableBody>
+    </Table>
+</div>
+<div class="bg-white w-full p-4 text-center">
+	<button class="text-blue-500" on:click={load_more}>
+		Daha Fazla Yükle
+	</button>
 </div>

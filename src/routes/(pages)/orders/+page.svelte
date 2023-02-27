@@ -62,7 +62,7 @@
 		>
 		<span class="sr-only">Check icon</span>
 	</svelte:fragment>
-	Arniva'ya gönderildi.</Toast
+	Kargoya gönderildi.</Toast
 >
 
 <PageHeader title="Siparişler">
@@ -110,17 +110,6 @@
 		</svg>
 		Filtrele
 	</button>
-	<a
-		href="/products/new"
-		class="hover:bg-blue-400 group flex items-center rounded-md bg-slate-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
-	>
-		<svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
-			<path
-				d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z"
-			/>
-		</svg>
-		Yeni
-	</a>
 </PageHeader>
 
 <div class="flex flex-col px-8 py-2">
@@ -176,7 +165,7 @@
 									} else {
 										alert("Bu sipariş daha önceden kargoya gönderilmiş")
 									}
-								}}>Arniva'ya gönder</DropdownItem
+								}}>Kargoya gönder</DropdownItem
 							>
 							<DropdownItem
 								class="flex items-center p-3 -mb-1 text-sm font-medium text-red-600 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline"

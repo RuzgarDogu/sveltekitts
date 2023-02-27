@@ -19,7 +19,7 @@
 </script>
 
 
-<PageHeader title="Siparişler">
+<PageHeader title="Kargo Takip">
 	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
 		<label for="topbar-search" class="sr-only">Search</label>
 		<div class="relative lg:w-96">
@@ -64,17 +64,6 @@
 		</svg>
 		Filtrele
 	</button>
-	<a
-		href="/products/new"
-		class="hover:bg-blue-400 group flex items-center rounded-md bg-slate-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
-	>
-		<svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
-			<path
-				d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z"
-			/>
-		</svg>
-		Yeni
-	</a>
 </PageHeader>
 
 <div class="flex flex-col px-8 py-2">
@@ -92,9 +81,29 @@
 		</TableHead>
 		<TableBody class="divide-y">
 			{#each data.cargo_orders as order}
-				<TableBodyRow class="cursor-pointer" on:click={() => goto('/orders/operations/'+order.id)}>
+				<TableBodyRow class="cursor-pointer">
 					<TableBodyCell>
-						{order.id}
+						<button
+							id="dropdownMenuIconButton"
+							data-dropdown-toggle="dropdownDots"
+							class="islemler-menu-{order.id} inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+							type="button"
+						>
+							<svg
+								class="w-6 h-6"
+								aria-hidden="true"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+								><path
+									d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+								/></svg
+							>
+						</button>
+						<Dropdown triggeredBy=".islemler-menu-{order.id}">
+							<DropdownItem on:click={() => goto('/orders/operations/'+order.id)}>Detay</DropdownItem>
+							<DropdownItem><a target="_blank" href="/pdf/Tnt.pdf">Etiket Oluştur</a></DropdownItem>
+						</Dropdown>
 					</TableBodyCell>
 					<TableBodyCell>
 						{order.carrier}

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import { PageHeader } from '@components';
-	import {
+    import type { PageData } from './$types';
+    import {
 		Avatar,
 		Modal,
 		Button,
@@ -17,11 +17,11 @@
 		Dropdown,
 		DropdownItem
 	} from 'flowbite-svelte';
-	export let data: PageData;
-	console.log(data);
+    export let data: PageData;
+    const { carriages } = data;
 </script>
 
-<PageHeader title="Müşteriler">
+<PageHeader title="Taşıma Tipleri">
 	<form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
 		<label for="topbar-search" class="sr-only">Search</label>
 		<div class="relative lg:w-96">
@@ -82,43 +82,48 @@
 	<Table hoverable={true}>
 		<TableHead>
 			<TableHeadCell class="!p-4"><Checkbox /></TableHeadCell>
+			<TableHeadCell>İşlemler</TableHeadCell>
+			<TableHeadCell>Kodu</TableHeadCell>
 			<TableHeadCell>Adı</TableHeadCell>
-			<TableHeadCell>Soyadı</TableHeadCell>
-			<TableHeadCell>Epostası</TableHeadCell>
-			<TableHeadCell>Telefonu</TableHeadCell>
-			<TableHeadCell>Profil Resmi</TableHeadCell>
-			<TableHeadCell>Kullanıcı Adı</TableHeadCell>
-			<TableHeadCell>İncele</TableHeadCell>
+			<TableHeadCell>Zaman</TableHeadCell>
+			<TableHeadCell>Öncelik</TableHeadCell>
 		</TableHead>
 		<TableBody class="divide-y">
-			{#each data.customers as customer}
+			{#each carriages as carriage, i}
 				<TableBodyRow>
 					<TableBodyCell class="!p-4">
-						<Checkbox />
-					</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.firstName}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.lastName}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.email}</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.phone}</TableBodyCell>
-					<TableBodyCell class="font-light">
-						<img
-							src={customer.image}
-							alt=""
-							class="flex-none w-14 h-14 rounded-full object-cover"
-							loading="lazy"
-							decoding="async"
-						/>
-					</TableBodyCell>
-					<TableBodyCell class="font-light">{customer.username}</TableBodyCell>
-					<TableBodyCell>
-						<button
-							class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-						>
-							İncele
-						</button>
-					</TableBodyCell>
-				</TableBodyRow>
-			{/each}
-		</TableBody>
-	</Table>
+                        <Checkbox />
+                    </TableBodyCell>
+                    <TableBodyCell>
+                        <button
+                        id="dropdownMenuIconButton"
+                        data-dropdown-toggle="dropdownDots"
+                        class="islemler-menu-{i} inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        type="button"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                            /></svg
+                        >
+                    </button>
+                    <Dropdown triggeredBy=".islemler-menu-{i}">
+                            <DropdownItem>İncele</DropdownItem>
+                            <DropdownItem>Değiştir</DropdownItem>
+                            <DropdownItem>Sil</DropdownItem>
+                        </Dropdown>
+                    </TableBodyCell>
+                    <TableBodyCell>{carriage.kodu}</TableBodyCell>
+                    <TableBodyCell>{carriage.adi}</TableBodyCell>
+                    <TableBodyCell>{carriage.zaman}</TableBodyCell>
+                    <TableBodyCell>{carriage.oncelik}</TableBodyCell>
+                    </TableBodyRow>
+                    {/each}
+        </TableBody>
+    </Table>
 </div>

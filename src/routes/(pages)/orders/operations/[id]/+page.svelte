@@ -86,6 +86,7 @@
 <form method="POST">
     <input type="hidden" name="id" value={order.id}>
     <PageHeader title="Operasyon Kartı Düzenle">
+        <a href="/orders/operations" class="hover:bg-slate-400 group flex items-center rounded-md bg-slate-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm">Vazgeç</a>
         <button
         type="submit"
         class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
